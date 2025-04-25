@@ -1,0 +1,150 @@
+# Konfiguracja AntiCheat System
+# Zaawansowany system anty-cheat dla serwerów Minecraft
+
+# Włącz lub wyłącz cały system
+enabled: true
+
+# Tryb logowania (info, warning, severe)
+log-level: info
+
+# Czy zapisywać naruszenia do pliku
+log-violations: true
+
+# Maksymalna liczba naruszeń zanim podjęte zostaną poważne działania
+max-violations: 50
+
+# Wyłączone światy (anty-cheat nie będzie działał w tych światach)
+exempt-worlds:
+  - creative
+  - staff
+
+# Konfiguracja sprawdzeń
+checks:
+  # Sprawdzenia ruchu
+  movement:
+    # Sprawdzanie latania
+    fly:
+      enabled: true
+      sensitivity: 3
+      max-violations: 10
+    
+    # Sprawdzanie prędkości
+    speed:
+      enabled: true
+      sensitivity: 3
+      max-violations: 10
+    
+    # Sprawdzanie teleportacji
+    teleport:
+      enabled: true
+      sensitivity: 3
+      max-violations: 10
+    
+    # Sprawdzanie chodzenia po wodzie (Jesus)
+    jesus:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+    
+    # Sprawdzanie manipulacji czasem (Timer)
+    timer:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+  
+  # Sprawdzenia walki
+  combat:
+    # Sprawdzanie auto-clickera
+    autoclicker:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+    
+    # Sprawdzanie aimbot
+    aimbot:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+    
+    # Sprawdzanie zasięgu
+    reach:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+      
+    # Sprawdzanie killaura (zaawansowane)
+    killaura:
+      enabled: true
+      sensitivity: 4
+      max-violations: 10
+      # Sprawdzanie czasu trafień (w ms)
+      min-hit-interval: 150
+      # Maksymalna liczba trafień w serii zanim zostanie wykryta killaura
+      max-consecutive-hits: 10
+  
+  # Sprawdzenia gracza
+  player:
+    # Sprawdzanie X-Ray
+    xray:
+      enabled: true
+      sensitivity: 2
+      max-violations: 10
+    
+    # Sprawdzanie inwentarza
+    inventory:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+      
+    # Sprawdzanie automatycznego stawiania bloków (Scaffold)
+    scaffold:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+      
+    # Sprawdzanie szybkiego niszczenia bloków (Nuker)
+    nuker:
+      enabled: true
+      sensitivity: 3
+      max-violations: 8
+      
+  # Sprawdzenia przeciwko obejściu systemu
+  misc:
+    # Wykrywanie prób wyłączenia systemu (Disabler)
+    disabler:
+      enabled: true
+      sensitivity: 4
+      max-violations: 10
+
+# Reakcje na naruszenia
+actions:
+  - violations: 10
+    action: "warn %player% &cProszę przestać używać cheatów."
+  - violations: 20
+    action: "broadcast &c%player% &ejest podejrzany o używanie cheatów!"
+  - violations: 30
+    action: "cmd:kick %player% &cWykryto użycie cheatów. Proszę ich nie używać!"
+  - violations: 50
+    action: "cmd:ban %player% &cAutomatyczne zbanowanie za używanie cheatów."
+
+# Ustawienia Anti-Crash
+anti-crash:
+  # Maksymalna liczba bytów w chunku
+  max-entities-per-chunk: 50
+  
+  # Maksymalna aktywność redstone na sekundę w chunku
+  max-redstone-per-second: 100
+  
+  # Maksymalna liczba upuszczonych przedmiotów przez gracza na sekundę
+  max-drops-per-second: 15
+
+# Ustawienia Packet Limiter
+packet-limiter:
+  # Maksymalna liczba pakietów na sekundę
+  max-packets-per-second: 300
+  
+  # Maksymalna liczba pakietów ruchu na sekundę
+  max-movement-packets-per-second: 60
+  
+  # Maksymalna liczba pakietów interakcji na sekundę
+  max-interaction-packets-per-second: 40

@@ -1,0 +1,92 @@
+name: EsoxiiiAC
+version: 1.0.0
+main: com.anticheatsystem.AntiCheatMain
+api-version: 1.16
+description: Zaawansowany system anty-cheat dla serwerów Minecraft
+authors: [Esoxiii]
+
+commands:
+  anticheat:
+    description: Główna komenda systemu AntiCheat
+    aliases: [ac]
+    usage: /anticheat <reload|check|violations|reset>
+    permission: anticheat.command
+
+permissions:
+  esoxiiiac.command:
+    description: Pozwala na używanie komendy /anticheat
+    default: op
+  
+  esoxiiiac.reload:
+    description: Pozwala na przeładowanie konfiguracji
+    default: op
+  
+  esoxiiiac.check:
+    description: Pozwala na sprawdzanie naruszeń graczy
+    default: op
+  
+  esoxiiiac.reset:
+    description: Pozwala na resetowanie naruszeń graczy
+    default: op
+  
+  esoxiiiac.notify:
+    description: Pozwala na otrzymywanie powiadomień o naruszeniach
+    default: op
+  
+  esoxiiiac.admin:
+    description: Daje wszystkie uprawnienia administratora
+    default: op
+    children:
+      esoxiiiac.command: true
+      esoxiiiac.reload: true
+      esoxiiiac.check: true
+      esoxiiiac.reset: true
+      esoxiiiac.notify: true
+  
+  esoxiiiac.bypass:
+    description: Pozwala na omijanie wszystkich sprawdzeń anti-cheat
+    default: op
+    children:
+      esoxiiiac.bypass.movement: true
+      esoxiiiac.bypass.combat: true
+      esoxiiiac.bypass.player: true
+      esoxiiiac.bypass.crash: true
+      esoxiiiac.bypass.packets: true
+  
+  esoxiiiac.bypass.movement:
+    description: Pozwala na omijanie sprawdzeń ruchu
+    default: op
+    children:
+      esoxiiiac.bypass.movement.fly: true
+      esoxiiiac.bypass.movement.speed: true
+      esoxiiiac.bypass.movement.teleport: true
+  
+  esoxiiiac.bypass.combat:
+    description: Pozwala na omijanie sprawdzeń walki
+    default: op
+    children:
+      esoxiiiac.bypass.combat.aimbot: true
+      esoxiiiac.bypass.combat.autoclicker: true
+      esoxiiiac.bypass.combat.reach: true
+  
+  esoxiiiac.bypass.player:
+    description: Pozwala na omijanie sprawdzeń gracza
+    default: op
+    children:
+      esoxiiiac.bypass.player.xray: true
+      esoxiiiac.bypass.player.inventory: true
+  
+  esoxiiiac.bypass.crash:
+    description: Pozwala na omijanie ochrony przed crashami
+    default: op
+  
+  esoxiiiac.bypass.packets:
+    description: Pozwala na omijanie limitów pakietów
+    default: op
+    
+  # Stare permisje (dla kompatybilności wstecznej)
+  anticheat.command:
+    description: Dawna permisja (używaj esoxiiiac.command)
+    default: op
+    children:
+      esoxiiiac.command: true
